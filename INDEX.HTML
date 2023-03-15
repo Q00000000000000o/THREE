@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>三元一次方程求解器</title>
+    <style>
+      input[type="text"] {
+        width: 50px;
+      }
+
+      label {
+        display: inline-block;
+        width: 20px;
+        text-align: right;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>三元一次方程求解器</h1>
+    <form>
+      <div>
+        <label for="a1">x</label>
+        <input type="text" id="a1" name="a1" value="1">
+        <label for="b1">y</label>
+        <input type="text" id="b1" name="b1" value="2">
+        <label for="c1">z</label>
+        <input type="text" id="c1" name="c1" value="3">
+        <label for="d1">=</label>
+        <input type="text" id="d1" name="d1" value="4">
+      </div>
+      <div>
+        <label for="a2">x</label>
+        <input type="text" id="a2" name="a2" value="5">
+        <label for="b2">y</label>
+        <input type="text" id="b2" name="b2" value="6">
+        <label for="c2">z</label>
+        <input type="text" id="c2" name="c2" value="7">
+        <label for="d2">=</label>
+        <input type="text" id="d2" name="d2" value="8">
+      </div>
+      <div>
+        <label for="a3">x</label>
+        <input type="text" id="a3" name="a3" value="9">
+        <label for="b3">y</label>
+        <input type="text" id="b3" name="b3" value="10">
+        <label for="c3">z</label>
+        <input type="text" id="c3" name="c3" value="11">
+        <label for="d3">=</label>
+        <input type="text" id="d3" name="d3" value="12">
+      </div>
+      <div>
+        <button type="button" onclick="calculate()">计算</button>
+      </div>
+    </form>
+    <div id="result"></div>
+    <script>
+      function calculate() {
+        // 读取输入的参数
+        let a1 = parseFloat(document.getElementById("a1").value);
+        let b1 = parseFloat(document.getElementById("b1").value);
+        let c1 = parseFloat(document.getElementById("c1").value);
+        let d1 = parseFloat(document.getElementById("d1").value);
+        let a2 = parseFloat(document.getElementById("a2").value);
+        let b2 = parseFloat(document.getElementById("b2").value);
+        let c2 = parseFloat(document.getElementById("c2").value);
+        let d2 = parseFloat(document.getElementById("d2").value);
+        let a3 = parseFloat(document.getElementById("a3").value);
+		let b3 = parseFloat(document.getElementById("b3").value);
+        let c3 = parseFloat(document.getElementById("c3").value);
+        let d3 = parseFloat(document.getElementById("d3").value);
+		  // 计算方程组的解
+    let detA = a1 * b2 * c3 + a2 * b3 * c1 + a3 * b1 * c2
+             - a1 * b3 * c2 - a2 * b1 * c3 - a3 * b2 * c1;
+    if (detA == 0) {
+      document.getElementById("result").innerHTML = "方程组无解或有无数解";
+    } else {
+      let detX = d1 * b2 * c3 + d2 * b3 * c1 + d3 * b1 * c2
+               - d1 * b3 * c2 - d2 * b1 * c3 - d3 * b2 * c1;
+      let detY = a1 * d2 * c3 + a2 * d3 * c1 + a3 * d1 * c2
+               - a1 * d3 * c2 - a2 * d1 * c3 - a3 * d2 * c1;
+      let detZ = a1 * b2 * d3 + a2 * b3 * d1 + a3 * b1 * d2
+               - a1 * b3 * d2 - a2 * b1 * d3 - a3 * b2 * d1;
+      let x = detX / detA;
+      let y = detY / detA;
+      let z = detZ / detA;
+      document.getElementById("result").innerHTML = `x = ${x}, y = ${y}, z = ${z}`;
+    }
+  }
+</script>
+  </body>
+</html>
+
+
